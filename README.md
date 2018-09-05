@@ -54,7 +54,7 @@ c) Finally, optionally download the Lymphatic Vessel dataset (used in the paper)
 2. Getting Started.
 
  - Make sure to carefully follow the installation instructions above.
- - For a detailed list of functionality see "Contents.m".
+ - For any potential issues with the software, you can report an issue: https://github.com/autotubularity/autotube/issues
 
 ###################################################################
 
