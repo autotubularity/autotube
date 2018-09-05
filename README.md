@@ -46,7 +46,7 @@ a) This code is written for the Matlab interpreter (tested with versions R2017a)
 b)
 
 c) Finally, optionally download the Lymphatic Vessel dataset (used in the paper):
- http://xxxxxxx
+ https://doi.org/10.3929/ethz-b-000262426
  After downloading the dataset, you can run AutoTube with the same parameters described in the paper. You should obtain the same statistics.
 
 ###################################################################
