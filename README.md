@@ -43,7 +43,7 @@ as well as, the following papers that are used as part of this library:
 
 a) This code is written for the Matlab interpreter (tested with versions R2017a) and requires the Matlab Image Processing Toolbox. 
 
-b)
+b) To use AutoTube follow the instructions described in https://github.com/autotubularity/autotube/wiki
 
 c) Finally, optionally download the Lymphatic Vessel dataset (used in the paper):
  https://doi.org/10.3929/ethz-b-000262426
