@@ -41,11 +41,11 @@ as well as, the following papers that are used as part of this library:
 
 1. Installation.
 
-a) This code is written for the Matlab interpreter (tested with versions R2017a) and requires the Matlab Image Processing Toolbox. 
+ - This code is written for the Matlab interpreter (tested with versions R2017a) and requires the Matlab Image Processing Toolbox. 
 
-b) To use AutoTube follow the instructions described in https://github.com/autotubularity/autotube/wiki
+ - To use AutoTube follow the instructions described in https://github.com/autotubularity/autotube/wiki
 
-c) Finally, optionally download the Lymphatic Vessel dataset (used in the paper):
+ - Finally, optionally download the Lymphatic Vessel dataset (used in the paper):
  https://doi.org/10.3929/ethz-b-000262426
  After downloading the dataset, you can run AutoTube with the same parameters described in the paper. You should obtain the same statistics.
 
@@ -58,7 +58,7 @@ c) Finally, optionally download the Lymphatic Vessel dataset (used in the paper)
  
  ###################################################################
 
-2. Wiki.
+3. Wiki.
 
  - We have created a wiki page, where you can find more information on how to use [AutoTube](https://github.com/autotubularity/autotube/wiki).
 
