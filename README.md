@@ -55,10 +55,16 @@ c) Finally, optionally download the Lymphatic Vessel dataset (used in the paper)
 
  - Make sure to carefully follow the installation instructions above.
  - For any potential issues with the software, you can report an issue: https://github.com/autotubularity/autotube/issues
+ 
+ ###################################################################
+
+2. Wiki.
+
+ - We have created a wiki page, where you can find more information on how to use [AutoTube](https://github.com/autotubularity/autotube/wiki).
 
 ###################################################################
 
-3. History.
+4. History.
 
 Version 1.0 (05/08/2018)
  - initial version corresponding to the Journal of Angiogenesis
