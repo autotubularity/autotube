@@ -12,14 +12,14 @@ This repository contains the source files needed to run AutoTube and also a manu
 If you use AutoTube, we appreciate it if you cite an appropriate subset of the following papers:
 
 @article{einstein,
-    author =       "Javier A. Montoya-Zegarra and Erica Russo and Peter Runge and Maria Jadhav and Ann-Helen Willrodt and Szymon Stoma and Simon F. Nørrelykke and Michael Detmar and Cornelia Halin",
-    title =        "AutoTube: a novel software for the automated morphometric analysis of vascular networks in tissues",
-    journal =      "Journal of Angiogenesis",
-    volume =       "X",
-    number =       "X",
-    pages =        "X--X",
-    year =         "2018",
-    DOI =          "http://dx.doi.org/X/X"
+    author =       {Javier A. Montoya-Zegarra and Erica Russo and Peter Runge and Maria Jadhav and Ann-Helen Willrodt and Szymon Stoma and Simon F. Nørrelykke and Michael Detmar and Cornelia Halin},
+    title =        {AutoTube: a novel software for the automated morphometric analysis of vascular networks in tissues},
+    journal =      {Journal of Angiogenesis},
+    volume =       {X},
+    number =       {X},
+    pages =        {X--X},
+    year =         {2018},
+    DOI =          {http://dx.doi.org/X/X}
 }
  
 
@@ -29,14 +29,14 @@ as well as, the following papers that are used as part of this library:
   author    = {Piotr Doll\'ar and C. Lawrence Zitnick},
   title     = {Structured Forests for Fast Edge Detection},
   booktitle = {ICCV},
-  year      = {2013},
+  year      = {2013}
 }
 
 @inproceedings{ZitnickECCV14edgeBoxes,
   author    = {C. Lawrence Zitnick and Piotr Doll\'ar},
   title     = {Edge Boxes: Locating Object Proposals from Edges},
   booktitle = {ECCV},
-  year      = {2014},
+  year      = {2014}
 }
 
 ###################################################################
