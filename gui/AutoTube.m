@@ -110,21 +110,21 @@ function handles = defaultParams(handles)
     
     data.fileName.extension = '.tif';
 
+%     
+%     data.microscope.objectiveMagnification = 10;
+%     set(handles.textEdit_ObjectiveMagnification, 'string', sprintf('%d', data.microscope.objectiveMagnification));
+%     
+%     data.microscope.lenseMagnification = 1;
+%     set(handles.textEdit_LenseMagnification, 'string', sprintf('%d', data.microscope.lenseMagnification));
+%     
+%     data.microscope.CMount = 1;
+%     set(handles.textEdit_CMount, 'string', sprintf('%d', data.microscope.CMount));
+
+    data.microscope.cameraPixSize = 1.0;
+    set(handles.textEdit_CameraPixelSize, 'string', sprintf('%.2f', data.microscope.cameraPixSize));
     
-    data.microscope.objectiveMagnification = 10;
-    set(handles.textEdit_ObjectiveMagnification, 'string', sprintf('%d', data.microscope.objectiveMagnification));
-    
-    data.microscope.lenseMagnification = 1;
-    set(handles.textEdit_LenseMagnification, 'string', sprintf('%d', data.microscope.lenseMagnification));
-    
-    data.microscope.CMount = 1;
-    set(handles.textEdit_CMount, 'string', sprintf('%d', data.microscope.CMount));
-    
-    data.microscope.cameraPixSize = 16;
-    set(handles.textEdit_CameraPixelSize, 'string', sprintf('%d', data.microscope.cameraPixSize));
-    
-    data.microscope.binning = 1;
-    set(handles.textEdit_Binning, 'string', sprintf('%d', data.microscope.binning));
+%     data.microscope.binning = 1;
+%     set(handles.textEdit_Binning, 'string', sprintf('%d', data.microscope.binning));
     
 
     %# Setting default values for drop-down menues
@@ -165,7 +165,7 @@ function handles = defaultParams(handles)
     set(handles.text_brushSize, 'string', sprintf('Brush size: %d', data.brushRad) );
     
     set(handles.checkbox_Spurs, 'value', 1);
-    data.spurLength = 30;
+    data.spurLength = 15;
     set(handles.slider_spurLength, 'min', 0);
     %set(handles.slider_spurLength, 'max', 500);
     set(handles.slider_spurLength, 'max', 100);
@@ -234,6 +234,9 @@ function trimStr = removeBlankSpaceStr(myStr)
     return;
     
 function handles = getHandlesDirectories(handles)
+
+    handles.data.microscope.cameraPixSize = str2double(get(handles.textEdit_CameraPixelSize, 'String'));
+
     adjusmentStr  = get(handles.popupmenuAdjustment, 'String');
     adjustmentVal  = get(handles.popupmenuAdjustment, 'Value');
     adjustmentType = lower(adjusmentStr{adjustmentVal});
@@ -1355,7 +1358,8 @@ function pixSze = getPixelSize(handles)
 % handles    structure with handles and user data (see GUIDATA)
 
     dataMicro = handles.data.microscope;
-    pixSze = dataMicro.cameraPixSize * dataMicro.binning / ( dataMicro.objectiveMagnification * dataMicro.lenseMagnification * dataMicro.CMount );
+    %pixSze = dataMicro.cameraPixSize * dataMicro.binning / ( dataMicro.objectiveMagnification * dataMicro.lenseMagnification * dataMicro.CMount );
+    pixSze = dataMicro.cameraPixSize;
     
     return;
 
@@ -1443,8 +1447,8 @@ function button_Statistics_Callback(hObject, eventdata, handles)
             noBranches                  = numel(find(imBranch));
             stats(ii).noBranches        = noBranches;
             
-            stats(ii).tubeWidthOrig    =  stats(ii).skelLengthOrig/stats(ii).tubeArea;
-            stats(ii).tubeWidth        =  stats(ii).skelLength/stats(ii).tubeArea;
+            stats(ii).tubeWidthOrig    =  stats(ii).tubeArea/stats(ii).skelLengthOrig;
+            stats(ii).tubeWidth        =  stats(ii).tubeArea/stats(ii).skelLength;
         else
             stats(ii).tubeArea = -1;
             stats(ii).hullArea = -1;
@@ -1458,13 +1462,20 @@ function button_Statistics_Callback(hObject, eventdata, handles)
     end
     
     if noFiles
-        header ={'Image ID', 'Tube Area(pix)', 'Hull Area(pix)', 'Skeleton Length Orig(pix)', 'Skeleton Length(pix)', 'No. of Branches Orig(pix)', 'No. of Branches(pix)', 'Tube Width Orig(pix)', 'Tube Width(pix)', 'Tube Area(um)', 'Hull Area(um)', 'Skeleton Length Orig(um)', 'Skeleton Length(um)', 'No. of Branches Orig(um)', 'No. of Branches(um)', 'Tube Width Orig(um)', 'Tube Width(um)'};
+        
+%         cameraPixSize = handles.data.microscope.cameraPixSize;
+        
+        header ={'Image ID', 'Tube Area(pix)', 'Hull Area(pix)', 'Skeleton Length Orig(pix)', 'Skeleton Length(pix)', 'No. of Branches Orig', 'No. of Branches', 'Tube Width Orig(pix)', 'Tube Width(pix)', 'Tube Area(um)', 'Hull Area(um)', 'Skeleton Length Orig(um)', 'Skeleton Length(um)', 'No. of Branches Orig', 'No. of Branches', 'Tube Width Orig(um)', 'Tube Width(um)'};
         fid = fopen(fullfile(handles.outStatsDir, sprintf('stats_%s_%s_%s%s_hull.csv', handles.strParams.tubuStr, handles.strParams.segmentType, fileNameSkelStrClean, fileNameBranchStrClean)), 'w');
         fprintf(fid, '%s,', header{:});
         fprintf(fid, '\n');
         for nf=1:noFiles
+%             fprintf(fid, '%s, %d, %2.4f, %d, %d, %d, %d, %2.4f, %2.4f, %d, %2.4f, %d, %d, %d, %d, %2.4f, %2.4f\n', stats(nf).fileName, stats(nf).tubeArea, stats(nf).hullArea, stats(nf).skelLengthOrig, stats(nf).skelLength, stats(nf).noBranchesOrig, stats(nf).noBranches, stats(nf).tubeWidthOrig, stats(nf).tubeWidth, ...
+%                 stats(nf).tubeArea*pixSzeUM, stats(nf).hullArea*pixSzeUM, stats(nf).skelLengthOrig*pixSzeUM, stats(nf).skelLength*pixSzeUM, stats(nf).noBranchesOrig, stats(nf).noBranches, stats(nf).tubeWidthOrig*pixSzeUM, stats(nf).tubeWidth*pixSzeUM);
+%             fprintf(fid, '%s, %d, %2.4f, %d, %d, %d, %d, %2.4f, %2.4f, %d, %2.4f, %d, %d, %d, %d, %2.4f, %2.4f\n', stats(nf).fileName, stats(nf).tubeArea, stats(nf).hullArea, stats(nf).skelLengthOrig, stats(nf).skelLength, stats(nf).noBranchesOrig, stats(nf).noBranches, stats(nf).tubeWidthOrig, stats(nf).tubeWidth, ...
+%                 stats(nf).tubeArea*(cameraPixSize^2), stats(nf).hullArea*pixSzeUM, stats(nf).skelLengthOrig*pixSzeUM, stats(nf).skelLength*pixSzeUM, stats(nf).noBranchesOrig, stats(nf).noBranches, stats(nf).tubeWidthOrig*pixSzeUM, stats(nf).tubeWidth*pixSzeUM);
             fprintf(fid, '%s, %d, %2.4f, %d, %d, %d, %d, %2.4f, %2.4f, %d, %2.4f, %d, %d, %d, %d, %2.4f, %2.4f\n', stats(nf).fileName, stats(nf).tubeArea, stats(nf).hullArea, stats(nf).skelLengthOrig, stats(nf).skelLength, stats(nf).noBranchesOrig, stats(nf).noBranches, stats(nf).tubeWidthOrig, stats(nf).tubeWidth, ...
-                stats(nf).tubeArea*pixSzeUM, stats(nf).hullArea*pixSzeUM, stats(nf).skelLengthOrig*pixSzeUM, stats(nf).skelLength*pixSzeUM, stats(nf).noBranchesOrig*pixSzeUM, stats(nf).noBranches*pixSzeUM, stats(nf).tubeWidthOrig*pixSzeUM, stats(nf).tubeWidth*pixSzeUM);
+                stats(nf).tubeArea*(pixSzeUM^2), stats(nf).hullArea*(pixSzeUM^2), stats(nf).skelLengthOrig*pixSzeUM, stats(nf).skelLength*pixSzeUM, stats(nf).noBranchesOrig, stats(nf).noBranches, stats(nf).tubeWidthOrig*pixSzeUM, stats(nf).tubeWidth*pixSzeUM);
         end
         fclose(fid);
     end
