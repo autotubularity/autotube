@@ -69,11 +69,12 @@ as well as, the following papers that are used as part of this library:
 4. History.
 
 Version 1.0 (05/08/2018)
- - initial version corresponding to the Journal of Angiogenesis
- - now hosting on github (https://github.com/autotubularity/autotube)
+ - Initial version corresponding to the Journal of Angiogenesis
+ - Now hosting on github (https://github.com/autotubularity/autotube)
  
 Version 2.0 (07/03/2020)
- - new GUI: replaced several microscope setting parameters with one single parameter "pixel size (µm)" for converting pixels units to µm.
- - corrected bug on vessel width calculation: vessel area / vessel length, previously: vessel length / vessel area.
+ - New GUI: replaced several microscope setting parameters with one single parameter "pixel size (µm)" for converting pixels units to µm.
+ - Corrected bug on vessel width calculation: vessel area / vessel length, previously: vessel length / vessel area.
+ - Updated manual following new GUI.
 
 ###################################################################
