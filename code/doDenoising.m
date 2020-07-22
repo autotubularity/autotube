@@ -31,7 +31,7 @@ function im_den = doDenoising(im, opts)
         im = im2double(im);
         if ispc
             [~, im_den] = BM3D_win(1, im, opts.denoising.bm3d.sigma);
-        elseif ismac || islinux
+        elseif ismac || isunix
             [im_den, ~] = BM3D_mac_linux(im, opts.denoising.bm3d.sigma/255.0, 'np');
         else
             error('Operating System not supported!');
